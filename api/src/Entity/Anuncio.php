@@ -1,5 +1,5 @@
 <?php
-// api/src/Entity/Ad.php
+// api/src/Entity/Anuncio.phpo.php
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ApiResource
 +
  */
-class Ad
+class Anuncio
 {
     /**
      * @var int The id of this ad.
@@ -33,7 +33,7 @@ class Ad
 
     /**
      * @var string title of ad
-     *
+     * @Assert\NotBlank
      * @ORM\Column(type="string")
      * @Assert\NotBlank
      */
@@ -42,12 +42,13 @@ class Ad
     /**
      * @var string The description of  ad.
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     public $description;
 
     /**
      * @var string Url of ad
-     *
+     * @Assert\Url
      * @ORM\Column(type="text")
      */
     public $url;
@@ -55,7 +56,7 @@ class Ad
 
     /**
      * @var string Url of ad
-     *
+     * @Assert\Url
      * @ORM\Column(type="text")
      */
     public $secondaryUrl;
@@ -63,7 +64,7 @@ class Ad
     /**
      * @var string Type of ad (offer / demand)
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     public $type;
 
@@ -71,21 +72,21 @@ class Ad
     /**
      * @var string Type of ad (profesional / amateur)
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     public $typeOd;
 
     /**
      * @var float The meters of flat/house
      *
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     public $meters;
 
     /**
      * @var integer The number of rooms
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     public $rooms;
 
@@ -93,14 +94,14 @@ class Ad
     /**
      * @var integer   The number of baths
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     public $baths;
 
     /**
      * @var integer The price for meter
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     public $priceMeter;
 
@@ -109,68 +110,68 @@ class Ad
      *
      * @ORM\Column(type="boolean")
      */
-    public $process;
+    public $process=false;
 
     /**
      * @var string Name of person who public the ad
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     public $contactName;
 
     /**
      * @var string Phone of person who public the ad
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     public $contactPhone;
 
     /**
      * @var string  Email of person who public the ad
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     public $contactEmail;
 
     /**
      * @var string Aditional data add by nosolopiso.com employee.
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     public $additionalDataByEmployee;
 
     /**
      * @var \DateTimeInterface Publication date of this ad.
      *
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     public $publicationAddDate;
 
     /**
      * @var \DateTimeInterface Publication date of this ad on Ma
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     public $publicationMaDate;
 
     /**
      * @var \DateTimeInterface Publication date of process by employee
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     public $dateProcess;
 
 
     /**
-     * @var Category[] Available categories for this ad.
+     * @var Categoria[] Available categories for this ad.
      *
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="ad")
+     * @ORM\OneToMany(targetEntity="Categoria", mappedBy="anuncio")
      */
-    public $categories;
+    public $categorias;
 
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
+        $this->categorias = new ArrayCollection();
     }
 
 

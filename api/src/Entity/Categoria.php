@@ -12,7 +12,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  * @ORM\Entity
  * @ApiResource()
  */
-class Category
+class Categoria
 {
     /**
      * @var int The id of this review.
@@ -24,27 +24,19 @@ class Category
     private $id;
 
     /**
-     * @var int The rating of this review (between 0 and 5).
+     * @var string The rating of this review (between 0 and 5).
      *
      * @ORM\Column(type="string")
      */
     public $name;
-
-
-    /**
-     * @var \DateTimeInterface The date of publication of this review.
-     *
-     * @ORM\Column(type="datetime_immutable")
-     */
-    public $publicationDate;
-
+    
 
     /**
-     * @var Ad The book this review is about.
+     * @var Anuncio The book this review is about.
      *
-     * @ORM\ManyToOne(targetEntity="Ad", inversedBy="categories")
+     * @ORM\ManyToOne(targetEntity="Anuncio", inversedBy="categorias")
      */
-    public $ad;
+    public $anuncio;
 
 
     public function getId(): ?int
